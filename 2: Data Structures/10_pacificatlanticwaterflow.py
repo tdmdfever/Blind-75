@@ -78,7 +78,7 @@ from collections import deque
 def pacific_atlantic(matrix):
     def search(starts):
         queue = deque(starts)
-        possible = set(queue)
+        reachable = set(queue)
 
         while queue:
             current_y, current_x = queue.popleft()
@@ -86,22 +86,22 @@ def pacific_atlantic(matrix):
             for yd, xd in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
                 new_y, new_x = current_y + yd, current_x + xd
 
-                if (0 <= new_y < len(matrix) and 
+                if (0 <= new_y < len(matrix) and
                     0 <= new_x < len(matrix[0]) and
-                    matrix[new_y][new_x] >= matrix[current_y][current_x] and 
-                    (new_y, new_x) not in possible):
+                    matrix[new_y][new_x] >= matrix[current_y][current_x] and
+                    (new_y, new_x) not in reachable):
 
                     queue.append((new_y,new_x))
-                    possible.add((new_y,new_x))
+                    reachable.add((new_y,new_x))
 
-        return possible
+        return reachable
 
     pacific_top = [(0,x) for x in range(len(matrix[0]))]
     pacific_left = [(y,0) for y in range(1, len(matrix))]
-    atlantic_right = [(len(matrix) - 1,x) for x in range(len(matrix[len(matrix) - 1]))]
-    atlantic_bottom = [(y,len(matrix[len(matrix) - 1]) - 1) for y in range(len(matrix) - 1)]
+    atlantic_bottom = [(len(matrix) - 1,x) for x in range(len(matrix[len(matrix) - 1]))]
+    atlantic_right = [(y,len(matrix[len(matrix) - 1]) - 1) for y in range(len(matrix) - 1)]
 
-    return search(pacific_top + pacific_left) & search(atlantic_right + atlantic_bottom)
+    return search(pacific_top + pacific_left) & search(atlantic_bottom + atlantic_right)
 
 # Test:
 matrix1 = [

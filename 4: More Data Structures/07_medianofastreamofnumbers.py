@@ -2,18 +2,18 @@
 Design a class to calculate the median of a stream of numbers. The class 
 should have the following two methods:
 
-insertNum(int num): stores the number in the class
-findMedian(): returns the median of all numbers inserted in the class
+insert_num(int num): stores the number in the class
+find_median(): returns the median of all numbers inserted in the class
 If the count of numbers inserted in the class is even, the median will be the average of the two middle numbers.
 
 Example 1:
-1. insertNum(3)
-2. insertNum(1)
-3. findMedian() -> output: 2.0
-4. insertNum(5)
-5. findMedian() -> output: 3.0
-6. insertNum(4)
-7. findMedian() -> output: 3.5
+1. insert_num(3)
+2. insert_num(1)
+3. find_median() -> output: 2.0
+4. insert_num(5)
+5. find_median() -> output: 3.0
+6. insert_num(4)
+7. find_median() -> output: 3.5
 """
 
 from heapq import *
@@ -26,7 +26,7 @@ class Solution:
         self.low = [] # max-heap containing lower half of data
         self.high = [] # min-heap containing upper half of data
 
-    def insertNum(self, num):
+    def insert_num(self, num):
         if not self.low and not self.high:
             heappush_max(self.low, num)
         else:
@@ -41,7 +41,7 @@ class Solution:
         elif len(self.high) > len(self.low):
             heappush_max(self.low, heappop(self.high))
 
-    def findMedian(self):
+    def find_median(self):
         if len(self.low) == len(self.high):
             return (self.low[0] + self.high[0])/2
         else:
@@ -49,13 +49,13 @@ class Solution:
 
 # Pre 3.14 (without max-heap):
 
-class oldSolution: 
+class OldSolution: 
 
     def __init__(self):
         self.low = [] # max-heap containing lower half of data
         self.high = [] # min-heap containing upper half of data
 
-    def insertNum(self, num):
+    def insert_num(self, num):
         if not self.low and not self.high:
             heappush(self.low, -num)
         else:
@@ -70,7 +70,7 @@ class oldSolution:
         elif len(self.high) > len(self.low):
             heappush(self.low, -heappop(self.high))
 
-    def findMedian(self):
+    def find_median(self):
         if len(self.low) == len(self.high):
             return (-self.low[0] + self.high[0])/2
         else:
@@ -78,19 +78,19 @@ class oldSolution:
 
 # Test:
 test = Solution()
-test.insertNum(3)
-test.insertNum(1)
-print(test.findMedian())
-test.insertNum(5)
-print(test.findMedian())
-test.insertNum(4)
-print(test.findMedian())
+test.insert_num(3)
+test.insert_num(1)
+print(test.find_median())
+test.insert_num(5)
+print(test.find_median())
+test.insert_num(4)
+print(test.find_median())
 
-test_old = oldSolution()
-test_old.insertNum(3)
-test_old.insertNum(1)
-print(test_old.findMedian())
-test_old.insertNum(5)
-print(test_old.findMedian())
-test_old.insertNum(4)
-print(test_old.findMedian())
+test_old = OldSolution()
+test_old.insert_num(3)
+test_old.insert_num(1)
+print(test_old.find_median())
+test_old.insert_num(5)
+print(test_old.find_median())
+test_old.insert_num(4)
+print(test_old.find_median())

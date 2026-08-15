@@ -9,12 +9,12 @@ Solution() Initializes the object.
 void insert(word) Inserts word into the trie, making it available for 
 future searches.
 bool search(word) Checks if the word exists in the trie.
-bool startsWith(word) Checks if any word in the trie starts with the 
+bool starts_with(word) Checks if any word in the trie starts with the 
 given prefix.
 
 Example 1:
 Input:
-Trie operations: ["Trie", "insert", "search", "startsWith"]
+Trie operations: ["Trie", "insert", "search", "starts_with"]
 Arguments: [[], ["apple"], ["apple"], ["app"]]
 Expected Output: [-1, -1, 1, 1]
 Justification: After inserting "apple", "apple" exists in the Trie. There is 
@@ -22,7 +22,7 @@ also a word that starts with "app", which is "apple".
 
 Example 2:
 Input:
-Trie operations: ["Trie", "insert", "search", "startsWith", "search"]
+Trie operations: ["Trie", "insert", "search", "starts_with", "search"]
 Arguments: [[], ["banana"], ["apple"], ["ban"], ["banana"]]
 Expected Output: [-1, -1, 0, 1, 1]
 Justification: After inserting "banana", "apple" does not exist in the 
@@ -30,7 +30,7 @@ Trie but a word that starts with "ban", which is "banana", does exist.
 
 Example 3:
 Input:
-Trie operations: ["Trie", "insert", "search", "startsWith", "startsWith"]
+Trie operations: ["Trie", "insert", "search", "starts_with", "starts_with"]
 Arguments: [[], ["grape"], ["grape"], ["grap"], ["gr"]]
 Expected Output: [-1, -1, 1, 1, 1]
 Justification: After inserting "grape", "grape" exists in the Trie. There 
@@ -71,7 +71,7 @@ class Trie:
             return False
 
     # Returns if there is any word in the trie that starts with the given prefix.
-    def startsWith(self, prefix: str) -> bool:
+    def starts_with(self, prefix: str) -> bool:
         current_node = self.root
         for i in range(len(prefix)):
             if prefix[i] not in current_node.children:
@@ -107,10 +107,10 @@ trie.insert('apple')
 trie.insert('banana')
 print(trie.search('apple'))
 print(trie.search('app'))
-print(trie.startsWith('app'))
+print(trie.starts_with('app'))
 print(trie.search('banana'))
 print(trie.search('ban'))
-print(trie.startsWith('ban'))
+print(trie.starts_with('ban'))
 trie.insert('app')
 print(trie.search('app'))
 print_trie(trie.root)

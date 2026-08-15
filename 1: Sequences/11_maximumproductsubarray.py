@@ -19,18 +19,18 @@ Justification: The subarray [-2,3,2,-4] has the maximum product of
 48.
 """
 
-def max_product(nums):  
-    maxProduct = currentMax = currentMin = nums[0]
+def max_product(nums):
+    best_product = current_max = current_min = nums[0]
     for num in nums[1:]:
         if num < 0:
-            currentMax, currentMin = currentMin, currentMax
-            
-        currentMax = max(num, currentMax * num)
-        currentMin = min(num, currentMin * num)
+            current_max, current_min = current_min, current_max
 
-        maxProduct = max(maxProduct, currentMax)
+        current_max = max(num, current_max * num)
+        current_min = min(num, current_min * num)
 
-    return maxProduct
+        best_product = max(best_product, current_max)
+
+    return best_product
 
 # Test:
 print(max_product([2,3,-2,4]))

@@ -14,32 +14,32 @@ Output: [1, 5, 7, 8, 9]
 import heapq
 
 class ListNode:
-  def __init__(self, value):
-    self.val = value
-    self.next = None
+    def __init__(self, value):
+        self.val = value
+        self.next = None
 
-# used for the min-heap
-  def __lt__(self, other):
-    return self.val < other.val
+    # used for the min-heap
+    def __lt__(self, other):
+        return self.val < other.val
 
 
 def merge(lists):
-    minheap = []
+    min_heap = []
 
-    for i, l in enumerate(lists):
-        if l:
-            heapq.heappush(minheap, (l.val, i, l))
-    
+    for i, head in enumerate(lists):
+        if head:
+            heapq.heappush(min_heap, (head.val, i, head))
+
     dummy = ListNode(0)
     current_node = dummy
 
-    while minheap:
-        val, i, node = heapq.heappop(minheap)
+    while min_heap:
+        val, i, node = heapq.heappop(min_heap)
         current_node.next = node
         current_node = current_node.next
 
-        if node.next: 
-            heapq.heappush(minheap, (node.next.val, i, node.next))
+        if node.next:
+            heapq.heappush(min_heap, (node.next.val, i, node.next))
 
     return dummy.next
 
@@ -57,5 +57,5 @@ l3.next.next = ListNode(4)
 merged_head = merge([l1, l2, l3])
 current = merged_head
 while current:
-   print(current.val, end=" ")
-   current = current.next
+    print(current.val, end=" ")
+    current = current.next

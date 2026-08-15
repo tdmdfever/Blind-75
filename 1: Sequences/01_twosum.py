@@ -44,6 +44,26 @@ def two_sum_solution(nums, target):
         else:
             num_dict[num] = i
 
+def two_sum_two_pointers(nums, target):
+    # Pair each value with its original index, then sort by value so the
+    # two-pointer scan can walk inward from both ends.
+    indexed_nums = sorted(enumerate(nums), key=lambda pair: pair[1])
+
+    left, right = 0, len(indexed_nums) - 1
+    while left < right:
+        left_idx, left_val = indexed_nums[left]
+        right_idx, right_val = indexed_nums[right]
+        current_sum = left_val + right_val
+
+        if current_sum == target:
+            return sorted([left_idx, right_idx])
+        elif current_sum < target:
+            left += 1
+        else:
+            right -= 1
+
+    return []
+
 # Test:
 print(two_sum([3, 2, 4], 6))
 print(two_sum([-1, -2, -3, -4, -5], -8))
@@ -52,3 +72,7 @@ print(two_sum([10, 15, 21, 25, 30], 45))
 print(two_sum_solution([3, 2, 4], 6))
 print(two_sum_solution([-1, -2, -3, -4, -5], -8))
 print(two_sum_solution([10, 15, 21, 25, 30], 45))
+
+print(two_sum_two_pointers([3, 2, 4], 6))
+print(two_sum_two_pointers([-1, -2, -3, -4, -5], -8))
+print(two_sum_two_pointers([10, 15, 21, 25, 30], 45))

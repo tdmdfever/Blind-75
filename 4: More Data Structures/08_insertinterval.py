@@ -23,9 +23,9 @@ we merged them into one [1,4].
 """
 
 class Interval:
-  def __init__(self, start, end):
-    self.start = start
-    self.end = end
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
 
 def insert_intervals(intervals, new_interval):
     merged = []

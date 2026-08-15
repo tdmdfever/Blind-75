@@ -16,7 +16,7 @@ def count_islands(matrix):
     num_rows = len(matrix)
     num_columns = len(matrix[0])
 
-    def find_connecting(y, x):
+    def flood_fill(y, x):
         queue = deque([(y, x)])
         matrix[y][x] = 0
       
@@ -33,7 +33,7 @@ def count_islands(matrix):
         for x in range(len(matrix[y])):
             if matrix[y][x] == 1:
                 total_islands += 1
-                find_connecting(y, x)
+                flood_fill(y, x)
 
     return total_islands
 

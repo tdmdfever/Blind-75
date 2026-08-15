@@ -28,3 +28,27 @@ Output: 2
 Justification: The longest consecutive sequences here are [7,8] and 
 [10,11], both of length 2.
 """
+
+class Solution:
+    def longest_consecutive(self, nums):
+        num_set = set(nums)
+        longest_sequence = 0
+
+        for num in num_set:
+            if num - 1 not in num_set:
+                current_num = num
+                current_streak = 1
+
+                while current_num + 1 in num_set:
+                    current_num += 1
+                    current_streak += 1
+
+                longest_sequence = max(longest_sequence, current_streak)
+
+        return longest_sequence
+
+# Test:
+sol = Solution()
+print(sol.longest_consecutive([10, 11, 14, 12, 13])) # 5
+print(sol.longest_consecutive([3, 6, 4, 100, 101, 102])) # 3
+print(sol.longest_consecutive([7, 8, 10, 11, 15])) # 2

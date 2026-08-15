@@ -65,24 +65,11 @@ def build_tree(preorder, inorder):
     return root
 
 # Test:
-def print_tree(root, level=0, prefix="Root: "):
-    """
-    Prints a binary tree horizontally.
-    Right children appear on top, left children on the bottom.
-    """
-    if not root:
-        return
+import os
+import sys
 
-    # Print right subtree first (top)
-    if root.right:
-        print_tree(root.right, level + 1, "┌── R: ")
-
-    # Print current node
-    print(" " * (level * 4) + prefix + str(root.val))
-
-    # Print left subtree (bottom)
-    if root.left:
-        print_tree(root.left, level + 1, "└── L: ")
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from tree_utils import print_tree
 
 root = build_tree([1,2,4,5,3,6,7], [4,2,5,1,6,3,7])
 

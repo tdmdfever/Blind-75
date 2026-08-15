@@ -76,7 +76,7 @@ class GraphNode:
         self.val = val
         self.neighbors = neighbors if neighbors is not None else []
 
-def cloneGraph(self, node: 'GraphNode') -> 'GraphNode':
+def clone_graph(node: 'GraphNode') -> 'GraphNode':
     clone_node = GraphNode(node.val, [])
     reference_queue = deque([node])
     clone_dict = {node: clone_node}
@@ -107,7 +107,7 @@ node2 = GraphNode(2)
 node1.neighbors.append(node2)
 node2.neighbors.append(node1)
 
-new_node1 = cloneGraph(node1)
+new_node1 = clone_graph(node1)
 print(new_node1.val)
 
 for neighbor in new_node1.neighbors:

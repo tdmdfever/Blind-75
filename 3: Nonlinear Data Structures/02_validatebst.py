@@ -22,10 +22,10 @@ Justification: Each subtree of the binary tree is a valid binary search tree. So
 """
 
 class TreeNode:
-   def __init__(self, val=0, left=None, right=None):
-       self.val = val
-       self.left = left
-       self.right = right
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 def is_valid_bst(root: TreeNode) -> bool:
     if not root:
@@ -39,24 +39,11 @@ def is_valid_bst(root: TreeNode) -> bool:
     return True
 
 # Test:
-def print_tree(root, level=0, prefix="Root: "):
-    """
-    Prints a binary tree horizontally.
-    Right children appear on top, left children on the bottom.
-    """
-    if not root:
-        return
+import os
+import sys
 
-    # Print right subtree first (top)
-    if root.right:
-        print_tree(root.right, level + 1, "┌── R: ")
-
-    # Print current node
-    print(" " * (level * 4) + prefix + str(root.val))
-
-    # Print left subtree (bottom)
-    if root.left:
-        print_tree(root.left, level + 1, "└── L: ")
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from tree_utils import print_tree
 
 root = TreeNode(5)
 root.left = TreeNode(3)

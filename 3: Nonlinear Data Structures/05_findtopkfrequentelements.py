@@ -15,12 +15,12 @@ Explanation: Only '11' appeared twice; all other numbers appeared once.
 """
 
 def find_top_k_frequent_numbers(nums, k):
-    topNumbers = []
-    ledger = {}
+    top_numbers = []
+    counts = {}
     for i in range(len(nums)):
-        ledger[nums[i]] = ledger.get(nums[i], 0) + 1
+        counts[nums[i]] = counts.get(nums[i], 0) + 1
 
-    return sorted(ledger, key = lambda x: ledger[x], reverse = True)[:k]
+    return sorted(counts, key = lambda num: counts[num], reverse = True)[:k]
 
 
 # Test

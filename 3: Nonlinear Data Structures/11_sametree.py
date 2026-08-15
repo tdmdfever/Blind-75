@@ -14,33 +14,20 @@ class TreeNode:
         self.left = left
         self.right = right
 
-def isSameTree(p, q):
+def is_same_tree(p, q):
     if not p and not q:
         return True
     if (p and q and p.val == q.val):
-        return isSameTree(p.left, q.left) and isSameTree(p.right, q.right)
+        return is_same_tree(p.left, q.left) and is_same_tree(p.right, q.right)
     else:
         return False
 
 # Test:
-def print_tree(root, level=0, prefix="Root: "):
-    """
-    Prints a binary tree horizontally.
-    Right children appear on top, left children on the bottom.
-    """
-    if not root:
-        return
+import os
+import sys
 
-    # Print right subtree first (top)
-    if root.right:
-        print_tree(root.right, level + 1, "┌── R: ")
-
-    # Print current node
-    print(" " * (level * 4) + prefix + str(root.val))
-
-    # Print left subtree (bottom)
-    if root.left:
-        print_tree(root.left, level + 1, "└── L: ")
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from tree_utils import print_tree
 
 root1 = TreeNode(10)
 root1.left = TreeNode(4)
@@ -56,4 +43,4 @@ root2.right.left = TreeNode(14)
 
 print_tree(root1)
 print_tree(root2)
-print(isSameTree(root1, root2))
+print(is_same_tree(root1, root2))

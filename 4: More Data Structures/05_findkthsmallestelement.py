@@ -25,7 +25,7 @@ small numbers are [5, -1].
 
 import random
 
-def findKthSmallestNumber(nums, k):
+def find_kth_smallest_number(nums, k):
     index = random.randint(0, len(nums) - 1)
     pivot = nums[index]
     
@@ -39,11 +39,11 @@ def findKthSmallestNumber(nums, k):
             right.append(nums[i])
     
     if k <= len(left):
-        return findKthSmallestNumber(left, k)
+        return find_kth_smallest_number(left, k)
     elif k <= len(left) + len(mid):
         return pivot
     elif k > len(left) + len(mid):
-        return findKthSmallestNumber(right, k - (len(left) + len(mid))) 
+        return find_kth_smallest_number(right, k - (len(left) + len(mid))) 
 
 # Test:
-print(findKthSmallestNumber([1, 5, 12, 2, 11, 5], 3))
+print(find_kth_smallest_number([1, 5, 12, 2, 11, 5], 3))

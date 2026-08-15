@@ -23,18 +23,18 @@ Justification: The opening square bracket '[' is closed by a curly brace '}', wh
 """
 
 def is_valid(s: str) -> bool:
-    record = []
+    stack = []
     pairs = {')': '(', '}': '{', ']': '['}
 
     for char in s:
         if char in pairs:
-            recent = record.pop() if record else ' '
-            if pairs[char] != recent:
+            top = stack.pop() if stack else ' '
+            if pairs[char] != top:
                 return False
         else:
-            record.append(char)
+            stack.append(char)
 
-    return not record
+    return not stack
 
 # Test:
 print(is_valid("()[]{}"))

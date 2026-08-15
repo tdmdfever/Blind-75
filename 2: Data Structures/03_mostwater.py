@@ -33,17 +33,17 @@ shorter line, which is 17. Thus, the area is 17 * 1 = 17.
 """
 
 # Container with most water
-def maxArea(arr):
+def max_area(arr):
     left, right = 0, len(arr) - 1
-    maxArea = 0
+    best_area = 0
     while left < right:
-        maxArea = max(maxArea, (right - left) * min(arr[left], arr[right]))
+        best_area = max(best_area, (right - left) * min(arr[left], arr[right]))
         if arr[left] <= arr[right]:
             left += 1
         else:
             right -= 1
-        
-    return maxArea
+
+    return best_area
 
 # Test:
-print(maxArea([1,3,2,4,5]))
+print(max_area([1,3,2,4,5]))

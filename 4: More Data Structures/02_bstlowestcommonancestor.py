@@ -36,7 +36,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
-def lowestCommonAncestor(root, p, q):
+def lowest_common_ancestor(root, p, q):
     current = root
     lower, upper = min(p, q), max(p, q)
 
@@ -50,32 +50,19 @@ def lowestCommonAncestor(root, p, q):
 
     return None
 
-def lowestCommonAncesto_recur(root, p, q):
+def lowest_common_ancestor_recur(root, p, q):
     if p.val < root.val and q.val < root.val:
-        return lowestCommonAncestor(root.left, p, q)
+        return lowest_common_ancestor(root.left, p, q)
     if p.val > root.val and q.val > root.val:
-        return lowestCommonAncestor(root.right, p, q)
+        return lowest_common_ancestor(root.right, p, q)
     return root
 
 # Test:
-def print_tree(root, level=0, prefix="Root: "):
-    """
-    Prints a binary tree horizontally.
-    Right children appear on top, left children on the bottom.
-    """
-    if not root:
-        return
+import os
+import sys
 
-    # Print right subtree first (top)
-    if root.right:
-        print_tree(root.right, level + 1, "┌── R: ")
-
-    # Print current node
-    print(" " * (level * 4) + prefix + str(root.val))
-
-    # Print left subtree (bottom)
-    if root.left:
-        print_tree(root.left, level + 1, "└── L: ")
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from tree_utils import print_tree
 
 root = TreeNode(6)
 root.left = TreeNode(2)
@@ -88,6 +75,6 @@ root.left.right.left = TreeNode(3)
 root.left.right.right = TreeNode(5)
 
 print_tree(root)
-print(lowestCommonAncestor(root, 2, 8).val)
-print(lowestCommonAncestor(root, 0, 3).val)
-print(lowestCommonAncestor(root, 4, 5).val) 
+print(lowest_common_ancestor(root, 2, 8).val)
+print(lowest_common_ancestor(root, 0, 3).val)
+print(lowest_common_ancestor(root, 4, 5).val) 

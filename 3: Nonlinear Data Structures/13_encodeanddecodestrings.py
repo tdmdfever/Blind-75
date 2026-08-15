@@ -40,9 +40,9 @@ def encode(strs):
     
 def decode(s):
     if not s or s == '[]':
-       return []
-    res = s[1:len(s) - 1].split(',')
-    return res
+        return []
+    decoded = s[1:len(s) - 1].split(',')
+    return decoded
 
 # Test:
 strs = ['apple', 'banana']

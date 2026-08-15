@@ -19,16 +19,16 @@ Output: 3
 Explanation: Replace the 'b' or 'd' with 'c' to have the longest repeating substring "ccc".
 """
 
-def find_length(str1, k):
+def find_longest_repeating_substring_length(s, k):
     max_length = 0
     left = right = 0
-    ledger = {}
-      
-    while right < len(str1):
-        ledger[str1[right]] = ledger.get(str1[right], 0) + 1
+    char_counts = {}
 
-        while (right - left + 1) - max(ledger.values()) > k:
-            ledger[str1[left]] -= 1
+    while right < len(s):
+        char_counts[s[right]] = char_counts.get(s[right], 0) + 1
+
+        while (right - left + 1) - max(char_counts.values()) > k:
+            char_counts[s[left]] -= 1
             left += 1
 
         max_length = max(max_length, right - left + 1)
@@ -37,4 +37,4 @@ def find_length(str1, k):
     return max_length
 
 # Test:
-print(find_length('aabbbbc', 3))
+print(find_longest_repeating_substring_length('aabbbbc', 3))

@@ -15,43 +15,30 @@ class TreeNode:
         self.left = left
         self.right = right
 
-def findMaximumPathSum(root):
-    globalMaximumSum = -math.inf
+def find_maximum_path_sum(root):
+    global_maximum_sum = -math.inf
     
-    def maximumPathSumAt(node):
-        nonlocal globalMaximumSum
+    def maximum_path_sum_at(node):
+        nonlocal global_maximum_sum
         if not node:
             return 0
 
-        left_gain = max(maximumPathSumAt(node.left), 0)
-        right_gain = max(maximumPathSumAt(node.right), 0)
+        left_gain = max(maximum_path_sum_at(node.left), 0)
+        right_gain = max(maximum_path_sum_at(node.right), 0)
 
-        globalMaximumSum = max(globalMaximumSum, node.val + left_gain + right_gain)
+        global_maximum_sum = max(global_maximum_sum, node.val + left_gain + right_gain)
 
         return node.val + max(left_gain, right_gain)
 
-    maximumPathSumAt(root)
-    return globalMaximumSum
+    maximum_path_sum_at(root)
+    return global_maximum_sum
 
 # Test:
-def print_tree(root, level=0, prefix="Root: "):
-    """
-    Prints a binary tree horizontally.
-    Right children appear on top, left children on the bottom.
-    """
-    if not root:
-        return
+import os
+import sys
 
-    # Print right subtree first (top)
-    if root.right:
-        print_tree(root.right, level + 1, "┌── R: ")
-
-    # Print current node
-    print(" " * (level * 4) + prefix + str(root.val))
-
-    # Print left subtree (bottom)
-    if root.left:
-        print_tree(root.left, level + 1, "└── L: ")
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from tree_utils import print_tree
 
 root = TreeNode(1)
 root.left = TreeNode(2)
@@ -65,4 +52,4 @@ root.right.left.right = TreeNode(8)
 root.right.right.right = TreeNode(9)
 
 print_tree(root)
-print(findMaximumPathSum(root))
+print(find_maximum_path_sum(root))

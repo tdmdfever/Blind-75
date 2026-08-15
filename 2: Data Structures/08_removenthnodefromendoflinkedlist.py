@@ -26,9 +26,9 @@ class Node:
 def remove_nth(head, n):
     current_node = head
     counter = 0
-    ledger = {}
+    position_to_node = {}
     while current_node != None:
-        ledger[counter] = current_node
+        position_to_node[counter] = current_node
         current_node = current_node.next
         counter += 1
         
@@ -38,8 +38,8 @@ def remove_nth(head, n):
         return new_head
     else:
         position = counter - n
-        ledger[position - 1].next = ledger[position].next
-        ledger[position].next = None
+        position_to_node[position - 1].next = position_to_node[position].next
+        position_to_node[position].next = None
 
     return head
 

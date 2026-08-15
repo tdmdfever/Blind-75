@@ -34,43 +34,30 @@ class TreeNode:
         self.left = left
         self.right = right
 
-def isSubtree(s, t):
-        def isSameTree(p, q):
-            if not p and not q:
+def is_subtree(s, t):
+    def is_same_tree(p, q):
+        if not p and not q:
+            return True
+        if (p and q and p.val == q.val):
+            return is_same_tree(p.left, q.left) and is_same_tree(p.right, q.right)
+        else:
+            return False
+
+    queue = deque([s])
+    while queue:
+        node = queue.popleft()
+        if node:
+            queue.extend([node.left, node.right])
+            if node.val == t.val and is_same_tree(node, t):
                 return True
-            if (p and q and p.val == q.val):
-                return isSameTree(p.left, q.left) and isSameTree(p.right, q.right)
-            else:
-                return False
-        
-        queue = deque([s])
-        while queue:
-            node = queue.popleft()
-            if node:
-                queue.extend([node.left, node.right])
-                if node.val == t.val and isSameTree(node, t):
-                    return True
-        return False
+    return False
 
 # Test:
-def print_tree(root, level=0, prefix="Root: "):
-    """
-    Prints a binary tree horizontally.
-    Right children appear on top, left children on the bottom.
-    """
-    if not root:
-        return
+import os
+import sys
 
-    # Print right subtree first (top)
-    if root.right:
-        print_tree(root.right, level + 1, "┌── R: ")
-
-    # Print current node
-    print(" " * (level * 4) + prefix + str(root.val))
-
-    # Print left subtree (bottom)
-    if root.left:
-        print_tree(root.left, level + 1, "└── L: ")
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from tree_utils import print_tree
 
 root = TreeNode(3)
 root.left = TreeNode(4)
@@ -84,4 +71,4 @@ subroot.right = TreeNode(2)
 
 print_tree(root, 0, "Root: ")
 print_tree(subroot, 0, "Subroot: ")
-print(isSubtree(root, subroot))
+print(is_subtree(root, subroot))

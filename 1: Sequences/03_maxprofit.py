@@ -30,10 +30,10 @@ Constraints:
 
 def max_profit(prices):
     profit = 0
-    for index, i in enumerate(prices):
-        for j in prices[index+1:]:
-            if j - i > profit:
-                profit = j - i
+    for index, price in enumerate(prices):
+        for later_price in prices[index+1:]:
+            if later_price - price > profit:
+                profit = later_price - price
     return profit
 
 # O(n)

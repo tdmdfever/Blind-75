@@ -27,11 +27,11 @@ def is_anagram_2(s, t):
     
     freq = {}
 
-    for i in s:
-        freq[i] = freq.get(i, 0) + 1
-    
-    for j in t:
-        freq[j] = freq.get(j, 0) - 1
+    for char in s:
+        freq[char] = freq.get(char, 0) + 1
+
+    for char in t:
+        freq[char] = freq.get(char, 0) - 1
     
     return all(freq_ct == 0 for freq_ct in freq.values())
 
